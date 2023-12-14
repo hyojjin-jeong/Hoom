@@ -9,16 +9,24 @@ html(lang="en")
         header 
             h1 HOOM
         main 
-            h2 Welcome to HOOM 
             div#welcome
-                form
+                h2 Welcome to HOOM 
+                form#name
+                    input(placeholder="nickname", required, type="text")
+                    button Save
+                form#roomname
                     input(placeholder="room name", required, type="text")
                     button Enter Room
             div#room
                 h3
                 ul
-                form
+                form#msg
                     input(placeholder="message", required, type="text")
                     button Send
+                button#nameedit Name Edit 
+                form#name1
+                    input(placeholder="nickname", required, type="text")
+                    button Save
+
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
