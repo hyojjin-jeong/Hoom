@@ -81,3 +81,16 @@ socket.on("bye", (left) => {
 });
 
 socket.on("new_message", addMessage);
+
+socket.on("room_change", (rooms) => {
+    const roomlist = welcome.querySelector("ul");
+    roomlist.innerHTML = "";
+    if (rooms.lenth === 0) {
+        return;
+    }
+    rooms.forEach((room) => {
+        const li = document.createElement("li");
+        li.innerText = room;
+        roomlist.append(li);
+    });
+});
