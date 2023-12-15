@@ -5,30 +5,15 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Hoom
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        style.
     body 
         header 
             h1 HOOM
-        main 
-            div#welcome
-                h2 Welcome to HOOM 
-                form#name
-                    input(placeholder="nickname", required, type="text")
-                    button Save
-                form#roomname
-                    input(placeholder="room name", required, type="text")
-                    button Enter Room
-                h4 Open Rooms: 
-                ul
-            div#room
-                h3
-                ul
-                form#msg
-                    input(placeholder="message", required, type="text")
-                    button Send
-                button#nameedit Name Edit 
-                form#name1
-                    input(placeholder="nickname", required, type="text")
-                    button Save
+        main
+            div#myStream
+                video#myFace(autoplay,playsinline, width="400", height="400")
+                button#mute Mute
+                button#camera Turn Camera Off
 
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
