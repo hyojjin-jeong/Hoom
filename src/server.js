@@ -26,6 +26,11 @@ instrument(wsServer, {
 
 
 wsServer.on("connection", (socket) => {
+    socket.on("join_room", (roomName, done) => {
+        socket.join(roomName);
+        done();
+        socket.to(roomName).emit("welcome");
+    });
 });
 
 httpServer.listen(3000, handleListen);
