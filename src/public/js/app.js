@@ -33,7 +33,7 @@ async function getCameras() {
 async function getMedia(deviceId) {
     const initialConstrains = {
         audio: true,
-        video: { facingMode: "user" },
+        video: true,
     };
     const cameraConstrains = {
         audio: true,
@@ -122,7 +122,7 @@ socket.on("offer", (offer) => {
 
 //RTC code
 function makeConnection() {
-    mypeerConnection = new RTCPeerConnection();
+    myPeerConnection = new RTCPeerConnection();
     myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
 
 }
