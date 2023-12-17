@@ -92,17 +92,18 @@ call.hidden = true;
 
 let roomName;
 
-async function startMedia(){
+async function initCall(){
     welcome.hidden = true;
     call.hidden = false;
     await getMedia();
     makeConnection();
 }
 
-function handelRoomSubmit(event) {
+async function handelRoomSubmit(event) {
     event.preventDefault();
     const input = enterRoomForm.querySelector("input");
-    socket.emit("join_room", input.value, startMedia);
+    await initCall();
+    socket.emit("join_room", input.value);
     roomName = input.value;
     input.value = "";
 }
@@ -116,13 +117,19 @@ socket.on("welcome", async () => {
     socket.emit("offer", offer, roomName);
 });
 
-socket.on("offer", (offer) => {
-    console.log(offer);
+socket.on("offer", async (offer) => {
+    myPeerConnection.setRemoteDescription(offer);
+    const answer = await myPeerConnection.createAnswer();
+    myPeerConnection.setLocalDescription(answer);
+    socket.emit("answer", answer, roomName);
+});
+
+socket.on("answer", (answer) => {
+    myPeerConnection.setRemoteDescription(answer);
 });
 
 //RTC code
 function makeConnection() {
     myPeerConnection = new RTCPeerConnection();
     myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
-
 }
