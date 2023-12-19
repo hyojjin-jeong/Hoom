@@ -148,18 +148,29 @@ socket.on("ice", (ice) => {
 
 //RTC code
 function makeConnection() {
-    myPeerConnection = new RTCPeerConnection();
-    myPeerConnection.addEventListener("icecandidate", handelIce);
-    myPeerConnection.addEventListener("addstream", handleAddStream);
+    myPeerConnection = new RTCPeerConnection({
+        iceServers: [
+          {
+            urls: [
+              "stun:stun.l.google.com:19302",
+              "stun:stun1.l.google.com:19302",
+              "stun:stun2.l.google.com:19302",
+              "stun:stun3.l.google.com:19302",
+              "stun:stun4.l.google.com:19302",
+            ],
+          },
+        ],
+      });
+    myPeerConnection.addEventListener("icecandidate", handelIce);myPeerConnection.ontrack = function(event) {
+        const peersFace = document.getElementById("peersFace");
+        if (event.streams && event.streams[0]) {
+            peersFace.srcObject = event.streams[0];
+        }
+    };
     myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
 }
 
 function handelIce(data) {
     console.log("sent candidate");
     socket.emit("ice", data.candidate, roomName);
-}
-
-function handleAddStream(data) {
-    const peersFace = document.getElementById("peersFace");
-    peersFace.srcObject = data.stream;
 }
