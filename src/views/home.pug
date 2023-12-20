@@ -4,23 +4,89 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Hoom
-        link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        //link(rel="stylesheet", href="https://unpkg.com/mvp.css")
         style.
+            body {
+                font-family: 'Montserrat', sans-serif;
+            }
+            h1 {
+                text-align: center;
+            }
+            video {
+                margin-left: 20px;
+            }
+            button {
+                width: 100px;
+                height: 40px;
+                display: block;
+                color: white;
+                background-color: lightskyblue;
+                border-color: lightskyblue;
+                border-radius: 10px;
+                border: none;
+                float: left;
+                margin-right: 10px;
+            }
+            #RoomInfo {
+                text-align: center;
+            }
+            #settings {
+                margin-top: 20px;
+                text-align: center;
+            }
+            #cameras {
+                float: left;
+                margin-left: 20px;
+                margin-right: 10px;
+                height: 40px;
+                width: 150px;
+                border-color: lightgrey;
+                border-radius: 10px;
+            }
+            #leave {
+                background-color: tomato;
+                border-color: tomato;
+                float: right;
+            }
+            form {
+                width: 100%;
+                margin-left: 5px;
+
+            }
+            input {
+                float: left;
+                display: block;
+                width: 70%;
+                height: 40px;
+                border-radius: 10px;
+                border: none;
+                padding-left: 20px;
+                background: whitesmoke;
+                color: black;
+                margin-right: 20px;
+            }
+            #roomBtn {
+                width: 20%;
+                height: 40px;
+            }
     body 
         header 
-            h1 HOOM
+            h1 🎀Face Time For You🎀
         main
             div#welcome
                 form#enterRoom
-                    input(placeholder="room name", required, type="text")
-                    button Enter room
+                    input#roomName(placeholder="room name", required, type="text")
+                    button#roomBtn Enter room
             div#call
+                h3#RoomInfo
                 div#myStream
-                    video#myFace(autoplay,playsinline, width="400", height="400")
-                    button#mute Mute
-                    button#camera Turn Camera Off
-                    select#cameras
-                    video#peersFace(autoplay,playsinline, width="400", height="400")
+                    video#myFace(autoplay,playsinline, width="40%")
+                    video#peersFace(autoplay,playsinline, width="40%")
+                    div#settings
+                        select#cameras
+                        button#mute Mute
+                        button#camera Turn Camera Off
+                        button#leave Leave
 
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
