@@ -98,6 +98,7 @@ const welcome = document.getElementById("welcome");
 const call = document.getElementById("call");
 const enterRoomForm = document.getElementById("enterRoom");
 const RoomInfo = document.getElementById("RoomInfo");
+const leaveBtn = document.getElementById("leave");
 
 call.hidden = true;
 
@@ -120,7 +121,13 @@ async function handelRoomSubmit(event) {
     input.value = "";
 }
 
+function handleLeaveClick() {
+    welcome.hidden = false;
+    call.hidden = true;
+}
+
 enterRoomForm.addEventListener("submit", handelRoomSubmit);
+leaveBtn.addEventListener("click", handleLeaveClick);
 
 //socket code
 socket.on("welcome", async () => {

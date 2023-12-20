@@ -14,6 +14,10 @@ html(lang="en")
             }
             video {
                 margin-left: 20px;
+                margin-bottom: 20px;
+                float: left;
+                display: block;
+                height: 400px;
             }
             button {
                 width: 100px;
@@ -30,7 +34,13 @@ html(lang="en")
             #RoomInfo {
                 text-align: center;
             }
+            #myStream {
+                width: 100%;
+                text-align: center;
+            }
             #settings {
+                display: block;
+                width: 100%;
                 margin-top: 20px;
                 text-align: center;
             }
@@ -82,11 +92,11 @@ html(lang="en")
                 div#myStream
                     video#myFace(autoplay,playsinline, width="40%")
                     video#peersFace(autoplay,playsinline, width="40%")
-                    div#settings
-                        select#cameras
-                        button#mute Mute
-                        button#camera Turn Camera Off
-                        button#leave Leave
+                div#settings
+                    select#cameras
+                    button#mute Mute
+                    button#camera Turn Camera Off
+                    button#leave Leave
 
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
